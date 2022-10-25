@@ -1,0 +1,184 @@
+@import "_variables";
+@import "_mixins";
+
+html {
+    font-size: 62.5%;
+    font-family: 'Outfit';
+}
+
+body {
+    background-color: $dark-navy;
+}
+
+// New game menu start
+%start-game-button {
+    color: $dark-navy;
+    font-size: $h-xs;
+    font-weight: 700;
+    letter-spacing: $kerning-xs;
+    text-transform: uppercase;
+    min-width: 32.7rem;
+    border: none;
+    border-radius: 1.5rem; 
+}
+
+.start-game {
+    @include displayFlex(column, center, center);
+    min-height: 100vh;
+    &__choose-player {
+        color: $silver;
+        text-transform: uppercase;
+        min-width: 32.7rem;
+        margin: 3.2rem 2.4rem;
+        padding: 2.4rem 2.4rem 3.2rem;
+        text-align: center;
+        background-color: $semi-dark-nevi;
+        box-shadow: inset 0px -0.8rem 0px #10212A;
+        border-radius: 1.5rem;
+        h1 {
+            font-size: $h-xs;
+            line-height: 2rem;
+            letter-spacing: $kerning-xs;
+            margin-bottom: 2.4rem;
+        }
+        p {
+            font-size: $body;
+            line-height: 1.8rem;
+            letter-spacing: 0.875px;
+            opacity: 0.5;
+            margin-top: 1.7rem;
+        }
+        &--div {
+            width: 27.9rem;
+            height: 7.2rem;
+            padding: .8rem .9rem;
+            border-radius: 1rem;
+            background-color: $dark-navy;
+            @include displayFlex(row, center, center);
+        }
+        &--x {
+            @include displayFlex(row, center, center);
+            width: 13.2rem;
+            height: 5.4rem;
+            border-radius: 1rem;
+        }
+        &--o {
+            @include displayFlex(row, center, center);
+            background-color: $silver;
+            width: 13.2rem;
+            height: 5.4rem;
+            border-radius: 1rem;
+        }
+    }
+    &__buttons {
+        @include displayFlex(column, center, center);
+        &--cpu {
+            background-color: $yellow;
+            padding: 1.4rem 7.7rem 2.2rem;
+            box-shadow: inset 0px -0.8rem 0px #CC8B13;
+            @extend %start-game-button;
+        }
+        &--player {
+            background-color: $cyan;
+            padding: 1.4rem 6rem 2.2rem;
+            margin-top: 1.6rem;
+            box-shadow: inset 0px -0.8rem 0px #118C87;
+            @extend %start-game-button;
+        }
+    }
+}
+
+.game {       
+    @include displayFlex(column, center, unset);
+    max-width: 380px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding-top: 2.8rem;
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+    &__menu {
+        @include displayFlex(row, space-between, center);
+        &--turn {
+            width: 9.6rem;
+            height: 4rem;
+            background-color: $semi-dark-nevi;
+            @include displayFlex(row, center, center);
+            box-shadow: inset 0px -0.4rem 0px #10212A;
+            border-radius: .5rem;
+            h1 {
+                color: $silver;
+                font-size: $body;
+                letter-spacing: $kerning-body;
+            }
+            img {
+                width: 1.6rem;
+                height: 1.6rem;
+                margin-right: .9rem;
+            }
+        }
+        &--restart {
+            width: 4rem;
+            height: 4rem;
+            background-color: $silver;
+            box-shadow: inset 0px -0.4rem 0px #6B8997;
+            border-radius: .5rem;
+            @include displayFlex(row, center, center);
+            img {
+                width: 1.538rem;
+                height: 1.538rem;
+            }
+        }
+    }
+    &__board {
+        margin-top: 6.4rem;
+        margin-bottom: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        &--div {
+            width: 9.6rem;
+            height: 9.6rem;
+            @include displayFlex(row, center, center);
+            background-color: $semi-dark-nevi;
+            box-shadow: inset 0px -0.8rem 0px #10212A;
+            border-radius: 1rem;
+        }
+    }
+    &__score {
+        @include displayFlex(row, space-between, center);
+        &--x {
+            @include displayFlex(column, center, center);
+            width: 9.6rem;
+            height: 6.4rem;
+            background-color: $cyan;
+            border-radius: 1rem;
+        }
+        &--ties {
+            @include displayFlex(column, center, center);
+            width: 9.6rem;
+            height: 6.4rem;
+            background-color: $silver;
+            border-radius: 1rem;
+        }
+        &--o {
+            @include displayFlex(column, center, center);
+            width: 9.6rem;
+            height: 6.4rem;
+            background-color: $yellow;
+            border-radius: 1rem;
+        }
+        p {
+            color: $dark-navy;
+            font-size: $body;
+            line-height: 1.8rem;
+            letter-spacing: $kerning-body;
+        }
+        h3 {
+            color: $dark-navy;
+            font-size: $h-s;
+            line-height: 2.5rem;
+            letter-spacing: $kerning-s;
+        }
+    }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <title>Tic Tac Toe</title>
+</head>
+<body>
+
+  <!-- New game menu start -->
+  <section class="start-game">
+    <img src="./assets/logo.svg" alt="logo">
+    <div class="start-game__choose-player">
+      <h1>Pick player 1's mark</h1>
+      <div class="start-game__choose-player--div">
+        <div class="start-game__choose-player--x"><img src="./assets/silver-x.svg" alt="x-icon"></div>
+        <div class="start-game__choose-player--o"><img src="./assets/navy-o.svg" alt="o-icon"></div>
+      </div>
+      <p>Remember: X goes first</p>
+    </div>
+    <div class="start-game__buttons">
+      <button class="start-game__buttons--cpu">New Game (vs CPU)</button>
+      <button class="start-game__buttons--player"> New Game (vs player)</button>
+    </div>
+  </section>
+
+  <!-- New game menu end -->
+  <section class="game">
+    <div class="game__menu">
+      <img src="./assets/logo.svg" alt="logo">
+      <div class="game__menu--turn">
+        <img src="./assets/silver-x.svg" alt="silver-x-icon">
+        <h1>TURN</h1>
+      </div>
+      <div class="game__menu--restart">
+        <img src="./assets/icon-restart.svg" alt="restart-icon">
+      </div>
+    </div>
+    <div class="game__board">
+      <div class="game__board--div"></div>
+      <div class="game__board--div"></div>
+      <div class="game__board--div"></div>
+      <div class="game__board--div"></div>
+      <div class="game__board--div"></div>
+      <div class="game__board--div"></div>
+      <div class="game__board--div"></div>
+      <div class="game__board--div"></div>
+      <div class="game__board--div"></div>
+    </div>
+    <div class="game__score">
+      <div class="game__score--x">
+        <p>X (You)</p>
+        <h3>14</h3>
+      </div>
+      <div class="game__score--ties">
+        <p>Ties</p>
+        <h3>32</h3>
+      </div>
+      <div class="game__score--o">
+        <p>X (CPU)</p>
+        <h3>11</h3>
+      </div>
+    </div>
+  </section>
+
+
+  Oh no, you lost
+  You won!
+  Player <!-- 1/2 --> wins!
+
+  <!-- x/o icon --> takes the round
+  Round tied
+  Restart game?
+
+  Quit
+  Next round
+  No, cancel
+  Yes, restart
+
+  <!-- Game board end -->
+
+</body>
+</html>
