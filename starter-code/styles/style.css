@@ -218,4 +218,149 @@ body {
   font-size: 2rem;
   line-height: 2.5rem;
   letter-spacing: 0.125rem;
+}
+
+.next-btn, .quit-btn {
+  height: 5.2rem;
+  color: #1A2A33;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 1rem;
+}
+
+.restart__div, .tied__div, .won__div, .lost__div {
+  background-color: #1F3641;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 4.7rem 4.8rem;
+  text-transform: uppercase;
+}
+.restart__div h3, .tied__div h3, .won__div h3, .lost__div h3 {
+  color: #A8BFC9;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  letter-spacing: 0.08rem;
+}
+
+.won__div--winner, .lost__div--winner {
+  display: flex;
+  align-items: center;
+}
+.won__div--winner img, .lost__div--winner img {
+  width: 3rem;
+  height: 3rem;
+  transform: translate(0, -10%);
+}
+.won__div--winner h1, .lost__div--winner h1 {
+  color: #F2B137;
+  margin-left: 0.8rem;
+  margin-top: 1.6rem;
+  margin-bottom: 2.4rem;
+  font-size: 2.4rem;
+  line-height: 3rem;
+  letter-spacing: 0.15rem;
+}
+
+.quit-btn {
+  width: 7.6rem;
+  background-color: #A8BFC9;
+  box-shadow: inset 0px -0.4rem 0px #6B8997;
+}
+
+.next-btn {
+  width: 15.6rem;
+  background-color: #F2B137;
+  box-shadow: inset 0px -0.4rem 0px #CC8B13;
+}
+
+.lost {
+  background-color: rgba(0, 0, 0, 0.5);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.lost__div--buttons {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.won {
+  background-color: rgba(0, 0, 0, 0.5);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.won__div--winner h1 {
+  color: #31C3BD;
+}
+.won__div--buttons {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.tied {
+  background-color: rgba(0, 0, 0, 0.5);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.tied__div {
+  padding: 6.1rem 6.8rem;
+}
+.tied__div h2 {
+  color: #A8BFC9;
+  font-size: 2.4rem;
+  line-height: 3rem;
+  letter-spacing: 0.15rem;
+  margin-bottom: 2.4rem;
+}
+.tied__div--buttons {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.restart {
+  background-color: rgba(0, 0, 0, 0.5);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.restart__div {
+  padding: 6.1rem 3.4rem;
+}
+.restart__div h2 {
+  color: #A8BFC9;
+  font-size: 2.4rem;
+  line-height: 3rem;
+  letter-spacing: 0.15rem;
+  margin-bottom: 2.4rem;
+}
+.restart__div--buttons {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+.restart__div--buttons .no {
+  width: 13.9rem;
+}
+.restart__div--buttons .yes {
+  width: 15.1rem;
 }/*# sourceMappingURL=style.css.map */

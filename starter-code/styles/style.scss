@@ -32,7 +32,7 @@ body {
         margin: 3.2rem 2.4rem;
         padding: 2.4rem 2.4rem 3.2rem;
         text-align: center;
-        background-color: $semi-dark-nevi;
+        background-color: $semi-dark-navy;
         box-shadow: inset 0px -0.8rem 0px #10212A;
         border-radius: 1.5rem;
         h1 {
@@ -101,7 +101,7 @@ body {
         &--turn {
             width: 9.6rem;
             height: 4rem;
-            background-color: $semi-dark-nevi;
+            background-color: $semi-dark-navy;
             @include displayFlex(row, center, center);
             box-shadow: inset 0px -0.4rem 0px #10212A;
             border-radius: .5rem;
@@ -140,7 +140,7 @@ body {
             width: 9.6rem;
             height: 9.6rem;
             @include displayFlex(row, center, center);
-            background-color: $semi-dark-nevi;
+            background-color: $semi-dark-navy;
             box-shadow: inset 0px -0.8rem 0px #10212A;
             border-radius: 1rem;
         }
@@ -179,6 +179,152 @@ body {
             font-size: $h-s;
             line-height: 2.5rem;
             letter-spacing: $kerning-s;
+        }
+    }
+}
+
+%modal-buttons {
+    height: 5.2rem;
+    color: $dark-navy;
+    font-weight: 700;
+    font-size: $h-xs;
+    line-height: 2rem;
+    letter-spacing: $kerning-xs;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 1rem;
+}
+
+%modal-div {
+    background-color: $semi-dark-navy;
+    width: 100%;
+    @include displayFlex(column, center, center);
+    padding: 4rem 4.7rem 4.8rem;
+    text-transform: uppercase;
+    h3 {
+        color: $silver;
+        font-size: $body;
+        line-height: 1.8rem;
+        letter-spacing: $kerning-body;
+    }
+}
+
+%modal-content {
+    display: flex;
+    align-items: center;
+    img {
+        width: 3rem;
+        height: 3rem;
+        transform: translate(0, -10%);
+    }
+    h1 {
+        color: $yellow;
+        margin-left: .8rem;
+        margin-top: 1.6rem;
+        margin-bottom: 2.4rem;
+        font-size: $h-m;
+        line-height: 3rem;
+        letter-spacing: $kerning-m;
+    }
+}
+
+.quit-btn {
+    @extend %modal-buttons;
+    width: 7.6rem;
+    background-color: $silver;
+    box-shadow: inset 0px -0.4rem 0px #6B8997;
+}
+
+.next-btn {
+    @extend %modal-buttons;
+    width: 15.6rem;
+    background-color: $yellow;
+    box-shadow: inset 0px -0.4rem 0px #CC8B13;
+}
+
+.lost {
+    background-color: rgba(0, 0, 0, 0.5);
+    min-height: 100vh;
+    @include displayFlex(column, center, center);
+    &__div {
+        @extend %modal-div;
+        &--winner {
+            @extend %modal-content;
+        }
+        &--buttons {
+            display: flex;
+            align-items: center;
+            gap: 1.6rem;
+        }
+    }
+}
+
+.won {
+    background-color: rgba(0, 0, 0, 0.5);
+    min-height: 100vh;
+    @include displayFlex(column, center, center);
+    &__div {
+        @extend %modal-div;
+        &--winner {
+            @extend %modal-content;
+            h1 {
+                color: $cyan;
+            }
+        }
+        &--buttons {
+            display: flex;
+            align-items: center;
+            gap: 1.6rem;
+        }
+    }
+}
+
+.tied {
+    background-color: rgba(0, 0, 0, 0.5);
+    min-height: 100vh;
+    @include displayFlex(column, center, center);
+    &__div {
+        @extend %modal-div;
+        padding: 6.1rem 6.8rem;
+        h2 {
+            color: $silver;
+            font-size: $h-m;
+            line-height: 3rem;
+            letter-spacing: $kerning-m;
+            margin-bottom: 2.4rem;
+        }
+        &--buttons {
+            display: flex;
+            align-items: center;
+            gap: 1.6rem;
+        }
+    }
+}
+
+.restart {
+    background-color: rgba(0, 0, 0, 0.5);
+    min-height: 100vh;
+    @include displayFlex(column, center, center);
+    &__div {
+        @extend %modal-div;
+        padding: 6.1rem 3.4rem;
+        h2 {
+            color: $silver;
+            font-size: $h-m;
+            line-height: 3rem;
+            letter-spacing: $kerning-m;
+            margin-bottom: 2.4rem;
+        }
+        &--buttons {
+            display: flex;
+            align-items: center;
+            gap: 1.6rem;
+            .no {
+                width: 13.9rem;
+            }
+            .yes{
+                width: 15.1rem;
+            }
         }
     }
 }

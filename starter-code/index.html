@@ -67,21 +67,50 @@
     </div>
   </section>
 
-
-  Oh no, you lost
-  You won!
-  Player <!-- 1/2 --> wins!
-
-  <!-- x/o icon --> takes the round
-  Round tied
-  Restart game?
-
-  Quit
-  Next round
-  No, cancel
-  Yes, restart
-
   <!-- Game board end -->
-
+  <section class="lost">
+    <div class="lost__div">
+      <h3>Oh no, you lost...</h3>
+      <div class="lost__div--winner">
+        <img src="./assets/icon-o.svg" alt="icon-o">
+        <h1>takes the round</h1>
+      </div>
+      <div class="lost__div--buttons">
+        <button class="quit-btn">Quit</button>
+        <button class="next-btn">Next round</button>
+      </div>
+    </div>
+  </section>
+  <section class="won">
+    <div class="won__div">
+      <h3>You won!</h3>
+      <div class="won__div--winner">
+        <img src="./assets/icon-x.svg" alt="icon-o">
+        <h1>takes the round</h1>
+      </div>
+      <div class="won__div--buttons">
+        <button class="quit-btn">Quit</button>
+        <button class="next-btn">Next round</button>
+      </div>
+    </div>
+  </section>
+  <section class="tied">
+    <div class="tied__div">
+      <h2>Round tied</h2>
+      <div class="tied__div--buttons">
+        <button class="quit-btn">Quit</button>
+        <button class="next-btn">Next round</button>
+      </div>
+    </div>
+  </section>
+  <section class="restart">
+    <div class="restart__div">
+      <h2>Restart game?</h2>
+      <div class="restart__div--buttons">
+        <button class="quit-btn no">No, cancel</button>
+        <button class="next-btn yes">Yes, restart</button>
+      </div>
+    </div>
+  </section>
 </body>
 </html>
