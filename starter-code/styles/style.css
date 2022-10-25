@@ -18,13 +18,20 @@ body {
   border: none;
   border-radius: 1.5rem;
 }
+@media screen and (min-width: 768px) {
+  .start-game__buttons--player, .start-game__buttons--cpu {
+    min-width: 46rem;
+  }
+}
 
 .start-game {
+  z-index: 100;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  background-color: #1A2A33;
 }
 .start-game__choose-player {
   color: #A8BFC9;
@@ -80,6 +87,20 @@ body {
   height: 5.4rem;
   border-radius: 1rem;
 }
+@media screen and (min-width: 768px) {
+  .start-game__choose-player {
+    min-width: 46rem;
+  }
+  .start-game__choose-player--div {
+    width: 41.2rem;
+  }
+  .start-game__choose-player--x {
+    width: 19.8rem;
+  }
+  .start-game__choose-player--o {
+    width: 19.8rem;
+  }
+}
 .start-game__buttons {
   display: flex;
   flex-direction: column;
@@ -97,13 +118,31 @@ body {
   margin-top: 1.6rem;
   box-shadow: inset 0px -0.8rem 0px #118C87;
 }
+@media screen and (min-width: 1024px) {
+  .start-game .choose-player-hover {
+    background-color: rgba(168, 191, 201, 0.05);
+    cursor: pointer;
+  }
+  .start-game__buttons--cpu:hover {
+    background-color: #FFC860;
+    cursor: pointer;
+  }
+  .start-game__buttons--player:hover {
+    background-color: #65E9E4;
+    cursor: pointer;
+  }
+}
 
 .game {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: unset;
-  max-width: 380px;
+  align-items: center;
+  background-color: #1A2A33;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 100%;
   min-height: 100vh;
   margin: 0 auto;
   padding-top: 2.8rem;
@@ -119,6 +158,8 @@ body {
 .game__menu--turn {
   width: 9.6rem;
   height: 4rem;
+  margin-left: 4.6rem;
+  margin-right: 7.4rem;
   background-color: #1F3641;
   display: flex;
   flex-direction: row;
@@ -152,7 +193,14 @@ body {
   width: 1.538rem;
   height: 1.538rem;
 }
+@media screen and (min-width: 1024px) {
+  .game__menu--restart:hover {
+    cursor: pointer;
+    background-color: #DBE8ED;
+  }
+}
 .game__board {
+  max-width: 32.8rem;
   margin-top: 6.4rem;
   margin-bottom: 2rem;
   display: flex;
@@ -176,6 +224,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  gap: 2rem;
 }
 .game__score--x {
   display: flex;
@@ -219,6 +268,38 @@ body {
   line-height: 2.5rem;
   letter-spacing: 0.125rem;
 }
+@media screen and (min-width: 768px) {
+  .game__menu--turn {
+    width: 14rem;
+    height: 5.2rem;
+    margin-left: 8.5rem;
+    margin-right: 10.8rem;
+  }
+  .game__menu--restart {
+    width: 5.2rem;
+    height: 5.2rem;
+  }
+  .game__board {
+    max-width: 46rem;
+    margin-top: 2rem;
+  }
+  .game__board--div {
+    width: 14rem;
+    height: 14rem;
+  }
+  .game__score--x {
+    width: 14rem;
+    height: 7.2rem;
+  }
+  .game__score--ties {
+    width: 14rem;
+    height: 7.2rem;
+  }
+  .game__score--o {
+    width: 14rem;
+    height: 7.2rem;
+  }
+}
 
 .next-btn, .quit-btn {
   height: 5.2rem;
@@ -248,6 +329,13 @@ body {
   line-height: 1.8rem;
   letter-spacing: 0.08rem;
 }
+@media screen and (min-width: 768px) {
+  .restart__div h3, .tied__div h3, .won__div h3, .lost__div h3 {
+    font-size: 1.6rem;
+    line-height: 2rem;
+    letter-spacing: 0.1rem;
+  }
+}
 
 .won__div--winner, .lost__div--winner {
   display: flex;
@@ -256,7 +344,6 @@ body {
 .won__div--winner img, .lost__div--winner img {
   width: 3rem;
   height: 3rem;
-  transform: translate(0, -10%);
 }
 .won__div--winner h1, .lost__div--winner h1 {
   color: #F2B137;
@@ -267,11 +354,31 @@ body {
   line-height: 3rem;
   letter-spacing: 0.15rem;
 }
+@media screen and (min-width: 768px) {
+  .won__div--winner img, .lost__div--winner img {
+    width: 6.4rem;
+    height: 6.4rem;
+    margin-top: 1.6rem;
+    margin-bottom: 2.4rem;
+  }
+  .won__div--winner h1, .lost__div--winner h1 {
+    margin-left: 2.4rem;
+    font-size: 4rem;
+    line-height: 5rem;
+    letter-spacing: 0.25rem;
+  }
+}
 
 .quit-btn {
   width: 7.6rem;
   background-color: #A8BFC9;
   box-shadow: inset 0px -0.4rem 0px #6B8997;
+}
+@media screen and (min-width: 1024px) {
+  .quit-btn:hover {
+    background-color: #DBE8ED;
+    cursor: pointer;
+  }
 }
 
 .next-btn {
@@ -279,8 +386,17 @@ body {
   background-color: #F2B137;
   box-shadow: inset 0px -0.4rem 0px #CC8B13;
 }
+@media screen and (min-width: 1024px) {
+  .next-btn:hover {
+    background-color: #FFC860;
+    cursor: pointer;
+  }
+}
 
 .lost {
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   min-height: 100vh;
   display: flex;
@@ -295,6 +411,9 @@ body {
 }
 
 .won {
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   min-height: 100vh;
   display: flex;
@@ -312,6 +431,9 @@ body {
 }
 
 .tied {
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   min-height: 100vh;
   display: flex;
@@ -329,6 +451,17 @@ body {
   letter-spacing: 0.15rem;
   margin-bottom: 2.4rem;
 }
+@media screen and (min-width: 768px) {
+  .tied__div {
+    padding: 6.7rem 25rem;
+  }
+  .tied__div h2 {
+    font-size: 4rem;
+    line-height: 5rem;
+    letter-spacing: 0.25rem;
+    margin-bottom: 3.1rem;
+  }
+}
 .tied__div--buttons {
   display: flex;
   align-items: center;
@@ -336,6 +469,9 @@ body {
 }
 
 .restart {
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   min-height: 100vh;
   display: flex;
@@ -352,6 +488,17 @@ body {
   line-height: 3rem;
   letter-spacing: 0.15rem;
   margin-bottom: 2.4rem;
+}
+@media screen and (min-width: 768px) {
+  .restart__div {
+    padding: 6.7rem 20.8rem;
+  }
+  .restart__div h2 {
+    font-size: 4rem;
+    line-height: 5rem;
+    letter-spacing: 0.25rem;
+    margin-bottom: 3.1rem;
+  }
 }
 .restart__div--buttons {
   display: flex;

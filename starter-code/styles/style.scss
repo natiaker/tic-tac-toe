@@ -10,7 +10,7 @@ body {
     background-color: $dark-navy;
 }
 
-// New game menu start
+
 %start-game-button {
     color: $dark-navy;
     font-size: $h-xs;
@@ -20,11 +20,17 @@ body {
     min-width: 32.7rem;
     border: none;
     border-radius: 1.5rem; 
+    @media screen and (min-width: $tablet) {
+        min-width: 46rem;
+    }
 }
 
 .start-game {
+    // position: relative;
+    z-index: 100;
     @include displayFlex(column, center, center);
     min-height: 100vh;
+    background-color: $dark-navy;
     &__choose-player {
         color: $silver;
         text-transform: uppercase;
@@ -69,6 +75,20 @@ body {
             height: 5.4rem;
             border-radius: 1rem;
         }
+        @media screen and (min-width: $tablet) {
+            & {
+                min-width: 46rem;
+                &--div {
+                    width: 41.2rem;
+                }
+                &--x {
+                    width: 19.8rem;
+                }
+                &--o {
+                    width: 19.8rem;
+                }
+            }
+        }
     }
     &__buttons {
         @include displayFlex(column, center, center);
@@ -86,11 +106,32 @@ body {
             @extend %start-game-button;
         }
     }
+    @media screen and (min-width: $desktop) {
+        .choose-player-hover {
+            background-color: rgba(168, 191, 201, 0.05);
+            cursor: pointer;                
+        }
+        &__buttons {
+            &--cpu:hover {
+                background-color: $yellow-hover;
+                cursor: pointer;
+            }
+            &--player:hover {
+                background-color: $cyan-hover;
+                cursor: pointer;
+            }
+        }
+    }
 }
 
 .game {       
-    @include displayFlex(column, center, unset);
-    max-width: 380px;
+    @include displayFlex(column, center, center);
+    background-color: $dark-navy;
+    // position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 100%;
     min-height: 100vh;
     margin: 0 auto;
     padding-top: 2.8rem;
@@ -101,6 +142,8 @@ body {
         &--turn {
             width: 9.6rem;
             height: 4rem;
+            margin-left: 4.6rem;
+            margin-right: 7.4rem;
             background-color: $semi-dark-navy;
             @include displayFlex(row, center, center);
             box-shadow: inset 0px -0.4rem 0px #10212A;
@@ -127,9 +170,16 @@ body {
                 width: 1.538rem;
                 height: 1.538rem;
             }
+            @media screen and (min-width: $desktop) {
+                &:hover {
+                    cursor: pointer;
+                    background-color: $silver-hover;
+                }
+            }
         }
     }
     &__board {
+        max-width: 32.8rem;
         margin-top: 6.4rem;
         margin-bottom: 2rem;
         display: flex;
@@ -147,6 +197,7 @@ body {
     }
     &__score {
         @include displayFlex(row, space-between, center);
+        gap: 2rem;
         &--x {
             @include displayFlex(column, center, center);
             width: 9.6rem;
@@ -181,6 +232,44 @@ body {
             letter-spacing: $kerning-s;
         }
     }
+    @media screen and (min-width: $tablet) {
+        & {
+            &__menu {
+                &--turn {
+                    width: 14rem;
+                    height: 5.2rem;
+                    margin-left: 8.5rem;
+                    margin-right: 10.8rem;
+                }
+                &--restart {
+                    width: 5.2rem;
+                    height: 5.2rem;
+                }
+            }
+            &__board {
+                max-width: 46rem;
+                margin-top: 2rem;
+                &--div {
+                    width: 14rem;
+                    height: 14rem;
+                }
+            }
+            &__score {
+                &--x {
+                    width: 14rem;
+                    height: 7.2rem;
+                }
+                &--ties {
+                    width: 14rem;
+                    height: 7.2rem;
+                }
+                &--o {
+                    width: 14rem;
+                    height: 7.2rem;
+                }
+            }
+        }
+    }
 }
 
 %modal-buttons {
@@ -207,6 +296,13 @@ body {
         line-height: 1.8rem;
         letter-spacing: $kerning-body;
     }
+    @media screen and (min-width: $tablet) { 
+        h3 {
+            font-size: $h-xs;
+            line-height: 2rem;
+            letter-spacing: $kerning-xs;
+        }
+    }
 }
 
 %modal-content {
@@ -215,7 +311,6 @@ body {
     img {
         width: 3rem;
         height: 3rem;
-        transform: translate(0, -10%);
     }
     h1 {
         color: $yellow;
@@ -226,6 +321,20 @@ body {
         line-height: 3rem;
         letter-spacing: $kerning-m;
     }
+    @media screen and (min-width: $tablet) { 
+        img {
+            width: 6.4rem;
+            height: 6.4rem;
+            margin-top: 1.6rem;
+            margin-bottom: 2.4rem;
+        }
+        h1 {
+            margin-left: 2.4rem;
+            font-size: $h-l;
+            line-height: 5rem;
+            letter-spacing: $kerning-l;
+        }
+    }
 }
 
 .quit-btn {
@@ -233,6 +342,12 @@ body {
     width: 7.6rem;
     background-color: $silver;
     box-shadow: inset 0px -0.4rem 0px #6B8997;
+    @media screen and (min-width: $desktop) {
+        &:hover {
+            background-color: $silver-hover;
+            cursor: pointer;
+        }
+    }
 }
 
 .next-btn {
@@ -240,9 +355,19 @@ body {
     width: 15.6rem;
     background-color: $yellow;
     box-shadow: inset 0px -0.4rem 0px #CC8B13;
+    @media screen and (min-width: $desktop) {
+        &:hover {
+            background-color: $yellow-hover;
+            cursor: pointer;
+        }
+    }
 }
 
 .lost {
+    // position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     min-height: 100vh;
     @include displayFlex(column, center, center);
@@ -260,6 +385,10 @@ body {
 }
 
 .won {
+    // position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     min-height: 100vh;
     @include displayFlex(column, center, center);
@@ -280,6 +409,10 @@ body {
 }
 
 .tied {
+    // position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     min-height: 100vh;
     @include displayFlex(column, center, center);
@@ -293,6 +426,15 @@ body {
             letter-spacing: $kerning-m;
             margin-bottom: 2.4rem;
         }
+        @media screen and (min-width: $tablet) {
+            padding: 6.7rem 25rem;
+            h2 {
+                font-size: $h-l;
+                line-height: 5rem;
+                letter-spacing: $kerning-l;
+                margin-bottom: 3.1rem;
+            }
+        }
         &--buttons {
             display: flex;
             align-items: center;
@@ -302,6 +444,10 @@ body {
 }
 
 .restart {
+    // position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     min-height: 100vh;
     @include displayFlex(column, center, center);
@@ -314,6 +460,15 @@ body {
             line-height: 3rem;
             letter-spacing: $kerning-m;
             margin-bottom: 2.4rem;
+        }
+        @media screen and (min-width: $tablet) {
+            padding: 6.7rem 20.8rem;
+            h2 {
+                font-size: $h-l;
+                line-height: 5rem;
+                letter-spacing: $kerning-l;
+                margin-bottom: 3.1rem;
+            }
         }
         &--buttons {
             display: flex;
