@@ -26,7 +26,7 @@ body {
 }
 
 .start-game {
-    // position: relative;
+    position: relative;
     z-index: 100;
     @include displayFlex(column, center, center);
     min-height: 100vh;
@@ -62,6 +62,9 @@ body {
             background-color: $dark-navy;
             @include displayFlex(row, center, center);
         }
+        .active {
+            background-color: $silver;
+        }
         &--x {
             @include displayFlex(row, center, center);
             width: 13.2rem;
@@ -70,7 +73,6 @@ body {
         }
         &--o {
             @include displayFlex(row, center, center);
-            background-color: $silver;
             width: 13.2rem;
             height: 5.4rem;
             border-radius: 1rem;
@@ -127,7 +129,7 @@ body {
 .game {       
     @include displayFlex(column, center, center);
     background-color: $dark-navy;
-    // position: absolute;
+    position: absolute;
     z-index: 99;
     top: 0;
     left: 0;
@@ -193,6 +195,7 @@ body {
             background-color: $semi-dark-navy;
             box-shadow: inset 0px -0.8rem 0px #10212A;
             border-radius: 1rem;
+            
         }
     }
     &__score {
@@ -364,7 +367,7 @@ body {
 }
 
 .lost {
-    // position: absolute;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -385,7 +388,7 @@ body {
 }
 
 .won {
-    // position: absolute;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -409,7 +412,7 @@ body {
 }
 
 .tied {
-    // position: absolute;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -444,7 +447,7 @@ body {
 }
 
 .restart {
-    // position: absolute;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;

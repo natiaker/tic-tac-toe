@@ -15,8 +15,8 @@
     <div class="start-game__choose-player">
       <h1>Pick player 1's mark</h1>
       <div class="start-game__choose-player--div">
-        <div class="start-game__choose-player--x"><img src="./assets/silver-x.svg" alt="x-icon"></div>
-        <div class="start-game__choose-player--o"><img src="./assets/navy-o.svg" alt="o-icon"></div>
+        <div class="start-game__choose-player--x"><img src="./assets/silver-x.svg" id="choose-x" alt="x-icon"></div>
+        <div href=""  class="start-game__choose-player--o active"><img src="./assets/navy-o.svg" id="choose-o" alt="o-icon"></div>
       </div>
       <p>Remember: X goes first</p>
     </div>
@@ -30,7 +30,7 @@
     <div class="game__menu">
       <img src="./assets/logo.svg" alt="logo">
       <div class="game__menu--turn">
-        <img src="./assets/silver-x.svg" alt="silver-x-icon">
+        <img src="./assets/silver-x.svg" id="whosTurn" alt="silver-icon">
         <h1>TURN</h1>
       </div>
       <div class="game__menu--restart">
@@ -38,35 +38,35 @@
       </div>
     </div>
     <div class="game__board">
-      <div class="game__board--div"></div>
-      <div class="game__board--div"></div>
-      <div class="game__board--div"></div>
-      <div class="game__board--div"></div>
-      <div class="game__board--div"></div>
-      <div class="game__board--div"></div>
-      <div class="game__board--div"></div>
-      <div class="game__board--div"></div>
-      <div class="game__board--div"></div>
+      <div class="game__board--div" index="0"></div>
+      <div class="game__board--div" index="1"></div>
+      <div class="game__board--div" index="2"></div>
+      <div class="game__board--div" index="3"></div>
+      <div class="game__board--div" index="4"></div>
+      <div class="game__board--div" index="5"></div>
+      <div class="game__board--div" index="6"></div>
+      <div class="game__board--div" index="7"></div>
+      <div class="game__board--div" index="8"></div>
     </div>
     <div class="game__score">
       <div class="game__score--x">
-        <p>X (You)</p>
-        <h3>14</h3>
+        <p id="x-player-score-label">X (You)</p>
+        <h3 id="x-score">0</h3>
       </div>
       <div class="game__score--ties">
         <p>Ties</p>
-        <h3>32</h3>
+        <h3 id="tie-score">0</h3>
       </div>
       <div class="game__score--o">
-        <p>X (CPU)</p>
-        <h3>11</h3>
+        <p id="o-player-score-label">O (CPU)</p>
+        <h3 id="o-score">0</h3>
       </div>
     </div>
   </section>
 
   <section class="lost">
     <div class="lost__div">
-      <h3>Oh no, you lost...</h3>
+      <h3 id="lostMessage">Oh no, you lost...</h3>
       <div class="lost__div--winner">
         <img src="./assets/icon-o.svg" alt="icon-o">
         <h1>takes the round</h1>
@@ -79,13 +79,13 @@
   </section>
   <section class="won">
     <div class="won__div">
-      <h3>You won!</h3>
+      <h3 id="winMessage">You won!</h3>
       <div class="won__div--winner">
         <img src="./assets/icon-x.svg" alt="icon-o">
         <h1>takes the round</h1>
       </div>
       <div class="won__div--buttons">
-        <button class="quit-btn">Quit</button>
+        <button class="quit-btn" id="quit">Quit</button>
         <button class="next-btn">Next round</button>
       </div>
     </div>
@@ -108,5 +108,7 @@
       </div>
     </div>
   </section>
+
+  <script src="script.js"></script>
 </body>
 </html>
