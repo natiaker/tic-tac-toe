@@ -72,14 +72,14 @@ vsPlayer.onclick = () => {
     setScoreMenuToMultiplayer();
 }
 
-function x_element(event) {
+function add_x_element(event) {
     let newElement = document.createElement('IMG');
     event.target.appendChild(newElement);
     newElement.src = "./assets/icon-x.svg";
     isPlayer_O_Turn = true;
 }
 
-function o_element(event) {
+function add_o_element(event) {
     let newElement = document.createElement('IMG');
     event.target.appendChild(newElement);
     newElement.src = "./assets/icon-o.svg";
@@ -90,11 +90,11 @@ function insertElement(event) {
     const clickedCellIndex = parseInt(event.target.getAttribute('index'));
 
     if(isPlayer_O_Turn) {
-        o_element(event);
+        add_o_element(event);
         playerTurn.src = "./assets/silver-x.svg";
         gameState.splice(clickedCellIndex, 1, "o");
     } else {
-        x_element(event);
+        add_x_element(event);
         playerTurn.src = "./assets/silver-o.svg";
         gameState.splice(clickedCellIndex, 1, "x");
     }
@@ -148,7 +148,6 @@ function winnerReveal(a) {
         document.querySelector(".won").style.zIndex = "100";
         document.getElementById("winMessage").innerText = "PLAYER " + p1 + " IS WINNER!";
         xScore = countScore(xScore, "x-score");
-        console.log("x = " + xScore);
         quit(1, ".won");
         nextRound(1, ".won"); 
     } else {
@@ -157,8 +156,7 @@ function winnerReveal(a) {
         oScore = countScore(oScore, "o-score");
         quit(0, ".lost");
         nextRound(0, ".lost"); 
-    }
-    
+    }  
 }
 
 function quit(index, status) {
@@ -193,4 +191,16 @@ function resetScore() {
     document.getElementById("x-score").innerText = xScore
     document.getElementById("o-score").innerText = oScore;
     document.getElementById("tie-score").innerText = tieScore;
+}
+
+//restart button
+document.querySelector(".game__menu--restart").onclick = () => {
+    document.querySelector(".restart").style.zIndex = "100";
+    document.querySelector(".no").onclick = () => {
+        document.querySelector(".restart").style.zIndex = "0";
+    }
+    document.querySelector(".yes").onclick = () => {
+        document.querySelector(".restart").style.zIndex = "0";
+        reset();
+    }
 }

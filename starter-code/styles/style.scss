@@ -195,7 +195,10 @@ body {
             background-color: $semi-dark-navy;
             box-shadow: inset 0px -0.8rem 0px #10212A;
             border-radius: 1rem;
-            
+            img {
+                width: 4rem;
+                height: 4rem;
+            }
         }
     }
     &__score {
@@ -255,6 +258,10 @@ body {
                 &--div {
                     width: 14rem;
                     height: 14rem;
+                    img {
+                        width: 6.4rem;
+                        height: 6.4rem;
+                    }
                 }
             }
             &__score {

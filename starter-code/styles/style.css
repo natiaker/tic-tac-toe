@@ -223,6 +223,10 @@ body {
   box-shadow: inset 0px -0.8rem 0px #10212A;
   border-radius: 1rem;
 }
+.game__board--div img {
+  width: 4rem;
+  height: 4rem;
+}
 .game__score {
   display: flex;
   flex-direction: row;
@@ -290,6 +294,10 @@ body {
   .game__board--div {
     width: 14rem;
     height: 14rem;
+  }
+  .game__board--div img {
+    width: 6.4rem;
+    height: 6.4rem;
   }
   .game__score--x {
     width: 14rem;
