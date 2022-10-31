@@ -193,14 +193,18 @@ function resetScore() {
     document.getElementById("tie-score").innerText = tieScore;
 }
 
-//restart button
-document.querySelector(".game__menu--restart").onclick = () => {
-    document.querySelector(".restart").style.zIndex = "100";
-    document.querySelector(".no").onclick = () => {
-        document.querySelector(".restart").style.zIndex = "0";
-    }
-    document.querySelector(".yes").onclick = () => {
-        document.querySelector(".restart").style.zIndex = "0";
-        reset();
+restart();
+function restart() {
+    document.querySelector(".game__menu--restart").onclick = () => {
+        document.querySelector(".restart").style.zIndex = "100";
+        document.querySelector(".no").onclick = () => {
+            document.querySelector(".restart").style.zIndex = "0";
+        }
+        document.querySelector(".yes").onclick = () => {
+            startGameSection.style.zIndex = "100";
+            document.querySelector(".restart").style.zIndex = "0";
+            reset();
+            resetScore() 
+        }
     }
 }

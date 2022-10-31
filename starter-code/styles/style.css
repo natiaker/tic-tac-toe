@@ -213,8 +213,8 @@ body {
   gap: 2rem;
 }
 .game__board--div {
-  width: 9.6rem;
-  height: 9.6rem;
+  min-width: 9rem;
+  min-height: 9rem;
   display: flex;
   flex-direction: row;
   justify-content: center;

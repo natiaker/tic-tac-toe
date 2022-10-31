@@ -15,7 +15,7 @@
 ### Links
 
 - Solution URL: [Solution URL](https://github.com/natiaker/tic-tac-toe.git)
-- Live Site URL: [Live site URL](https://natiaker.github.io/tic-tac-toe)
+- Live Site URL: [Live site URL](https://natiaker.github.io/tic-tac-toe/starter-code)
 
 ### Built with
 
