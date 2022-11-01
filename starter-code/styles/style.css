@@ -69,8 +69,17 @@ body {
   justify-content: center;
   align-items: center;
 }
-.start-game__choose-player .active {
+.start-game__choose-player .active-x {
   background-color: #A8BFC9;
+  background-image: url(../assets/navy-x.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.start-game__choose-player .active-o {
+  background-color: #A8BFC9;
+  background-image: url(../assets/navy-o.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .start-game__choose-player--x {
   display: flex;
@@ -80,6 +89,9 @@ body {
   width: 13.2rem;
   height: 5.4rem;
   border-radius: 1rem;
+  background-image: url(../assets/silver-x.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .start-game__choose-player--o {
   display: flex;
@@ -89,6 +101,9 @@ body {
   width: 13.2rem;
   height: 5.4rem;
   border-radius: 1rem;
+  background-image: url(../assets/silver-o.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 @media screen and (min-width: 768px) {
   .start-game__choose-player {
@@ -226,6 +241,18 @@ body {
 .game__board--div img {
   width: 4rem;
   height: 4rem;
+}
+.game__board--div.x-hover:hover {
+  background-image: url("../assets/icon-x-outline.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+.game__board--div.o-hover:hover {
+  background-image: url("../assets/icon-o-outline.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
 .game__score {
   display: flex;

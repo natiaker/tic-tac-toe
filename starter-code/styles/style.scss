@@ -62,20 +62,35 @@ body {
             background-color: $dark-navy;
             @include displayFlex(row, center, center);
         }
-        .active {
+        .active-x {
             background-color: $silver;
+            background-image: url(../assets/navy-x.svg);
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .active-o {
+            background-color: $silver;
+            background-image: url(../assets/navy-o.svg);
+            background-repeat: no-repeat;
+            background-position: center
         }
         &--x {
             @include displayFlex(row, center, center);
             width: 13.2rem;
             height: 5.4rem;
             border-radius: 1rem;
+            background-image: url(../assets/silver-x.svg);
+            background-repeat: no-repeat;
+            background-position: center
         }
         &--o {
             @include displayFlex(row, center, center);
             width: 13.2rem;
             height: 5.4rem;
             border-radius: 1rem;
+            background-image: url(../assets/silver-o.svg);
+            background-repeat: no-repeat;
+            background-position: center
         }
         @media screen and (min-width: $tablet) {
             & {
@@ -198,6 +213,18 @@ body {
             img {
                 width: 4rem;
                 height: 4rem;
+            }
+            &.x-hover:hover {
+                background-image: url('../assets/icon-x-outline.svg');
+                background-position: center;
+                background-repeat: no-repeat;
+                cursor: pointer;
+            }
+            &.o-hover:hover {
+                background-image: url('../assets/icon-o-outline.svg');
+                background-position: center;
+                background-repeat: no-repeat;
+                cursor: pointer;
             }
         }
     }

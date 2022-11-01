@@ -32,18 +32,14 @@ choosePlayer.addEventListener('click', (e) => {
     if (!isButton) return;
 
     if(e.target.classList.contains("start-game__choose-player--x")) {
-        chooseXdiv.classList.add("active");
-        chooseOdiv .classList.remove("active");
-        choosenX.src = "./assets/navy-x.svg";
-        choosenO.src = "./assets/silver-o.svg";
+        chooseXdiv.classList.add("active-x");
+        chooseOdiv .classList.remove("active-o");
         p1 = "1";
         p2 = "2";
         return p1, p2;
     } else {
-        chooseXdiv.classList.remove("active");
-        chooseOdiv .classList.add("active");
-        choosenX.src = "./assets/silver-x.svg";
-        choosenO.src = "./assets/navy-o.svg";
+        chooseXdiv.classList.remove("active-x");
+        chooseOdiv .classList.add("active-o");
     }   
 })
 
@@ -72,6 +68,8 @@ vsPlayer.onclick = () => {
     setScoreMenuToMultiplayer();
 }
 
+
+
 function add_x_element(event) {
     let newElement = document.createElement('IMG');
     event.target.appendChild(newElement);
@@ -89,24 +87,39 @@ function add_o_element(event) {
 function insertElement(event) {
     const clickedCellIndex = parseInt(event.target.getAttribute('index'));
 
+    if (gameState[clickedCellIndex] !== "") { return; }
     if(isPlayer_O_Turn) {
         add_o_element(event);
         playerTurn.src = "./assets/silver-x.svg";
         gameState.splice(clickedCellIndex, 1, "o");
+        gameBoardDiv.forEach(box => {
+            box.classList.remove("o-hover");
+            if(box.hasChildNodes() === false) {
+                box.classList.add("x-hover");
+            }
+        })
     } else {
         add_x_element(event);
         playerTurn.src = "./assets/silver-o.svg";
         gameState.splice(clickedCellIndex, 1, "x");
+        gameBoardDiv.forEach(box => {
+            box.classList.remove("x-hover");
+            if(box.hasChildNodes() === false) {
+                box.classList.add("o-hover");
+            }
+        })
     }
 }
 
+
 gameBoardDiv.forEach(box => {
+    box.classList.add("x-hover");
     box.onclick = (event) => {
         if(!gameEnd) {
             insertElement(event);  
             checkWin(); 
         } 
-    }
+    }   
 })
 
 function checkWin() {
@@ -115,10 +128,12 @@ function checkWin() {
         let a = gameState[winCondition[0]];
         let b = gameState[winCondition[1]];
         let c = gameState[winCondition[2]]; 
+        // console.log("a="+a,"b="+b,"c="+c);
         if (a === '' || b === '' || c === '') { continue; }
         if(a===b && b===c) {
             winnerReveal(a);
             return gameEnd = true;
+            
         }
         if (!gameState.includes("")) {
             gameTied();
@@ -179,8 +194,11 @@ function reset() {
     isPlayer_O_Turn = false;
     gameEnd = false;
     gameState = ["", "", "", "", "", "", "", "", ""];
+    playerTurn.src = "./assets/silver-x.svg";
     gameBoardDiv.forEach(box => {
         box.innerHTML = "";
+        box.classList.remove("o-hover");
+        box.classList.add("x-hover");
     })
 }
 
@@ -201,10 +219,8 @@ function restart() {
             document.querySelector(".restart").style.zIndex = "0";
         }
         document.querySelector(".yes").onclick = () => {
-            startGameSection.style.zIndex = "100";
             document.querySelector(".restart").style.zIndex = "0";
             reset();
-            resetScore() 
         }
     }
 }
