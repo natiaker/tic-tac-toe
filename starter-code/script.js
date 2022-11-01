@@ -68,8 +68,6 @@ vsPlayer.onclick = () => {
     setScoreMenuToMultiplayer();
 }
 
-
-
 function add_x_element(event) {
     let newElement = document.createElement('IMG');
     event.target.appendChild(newElement);
@@ -122,22 +120,38 @@ gameBoardDiv.forEach(box => {
     }   
 })
 
+
+
 function checkWin() {
     for(let i = 0; i < 8; i++ ) {
         const winCondition = WINNING_COMBINATIONS[i];
         let a = gameState[winCondition[0]];
         let b = gameState[winCondition[1]];
         let c = gameState[winCondition[2]]; 
-        // console.log("a="+a,"b="+b,"c="+c);
+
         if (a === '' || b === '' || c === '') { continue; }
         if(a===b && b===c) {
             winnerReveal(a);
+            styleWinnerCells(winCondition, a);
             return gameEnd = true;
-            
         }
         if (!gameState.includes("")) {
             gameTied();
             return gameEnd = true;
+        }
+    }
+}
+
+function styleWinnerCells(winCondition, a){
+    for(let j = 0; j < 3; j++ ) {
+        let winnerCells = document.querySelector(`[index = "${winCondition[j]}"]`);
+        
+        if(a === "x") {
+            winnerCells.style.backgroundColor = "#31C3BD";
+            winnerCells.firstChild.src = "./assets/navy-x.svg";
+        } else {
+            winnerCells.style.backgroundColor = "#F2B137";
+            winnerCells.firstChild.src = "./assets/navy-o.svg";
         }
     }
 }
@@ -197,6 +211,7 @@ function reset() {
     playerTurn.src = "./assets/silver-x.svg";
     gameBoardDiv.forEach(box => {
         box.innerHTML = "";
+        box.style.backgroundColor = "#1F3641";
         box.classList.remove("o-hover");
         box.classList.add("x-hover");
     })
@@ -211,7 +226,6 @@ function resetScore() {
     document.getElementById("tie-score").innerText = tieScore;
 }
 
-restart();
 function restart() {
     document.querySelector(".game__menu--restart").onclick = () => {
         document.querySelector(".restart").style.zIndex = "100";
@@ -224,3 +238,4 @@ function restart() {
         }
     }
 }
+restart();
