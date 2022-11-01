@@ -214,17 +214,21 @@ body {
                 width: 4rem;
                 height: 4rem;
             }
-            &.x-hover:hover {
-                background-image: url('../assets/icon-x-outline.svg');
-                background-position: center;
-                background-repeat: no-repeat;
-                cursor: pointer;
-            }
-            &.o-hover:hover {
-                background-image: url('../assets/icon-o-outline.svg');
-                background-position: center;
-                background-repeat: no-repeat;
-                cursor: pointer;
+            @media screen and (min-width: $desktop ) {
+                & {
+                    &.x-hover:hover {
+                        background-image: url('../assets/icon-x-outline.svg');
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        cursor: pointer;
+                    }
+                    &.o-hover:hover {
+                        background-image: url('../assets/icon-o-outline.svg');
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }

@@ -4,11 +4,11 @@ const gameBoardDiv = document.querySelectorAll(".game__board--div");
 const chooseXdiv= document.querySelector(".start-game__choose-player--x");
 const chooseOdiv = document.querySelector(".start-game__choose-player--o");
 const choosePlayer = document.querySelector(".start-game__choose-player--div");
-const choosenX = document.getElementById("choose-x");
-const choosenO = document.getElementById("choose-o");
 const playerTurn = document.getElementById("whosTurn");
 const vsCpu = document.querySelector(".start-game__buttons--cpu");
 const vsPlayer = document.querySelector(".start-game__buttons--player");
+
+let multiplayer = false;
 let isPlayer_O_Turn = false;
 let gameEnd = false;
 let gameState = ["", "", "", "", "", "", "", "", ""];
@@ -33,13 +33,13 @@ choosePlayer.addEventListener('click', (e) => {
 
     if(e.target.classList.contains("start-game__choose-player--x")) {
         chooseXdiv.classList.add("active-x");
-        chooseOdiv .classList.remove("active-o");
+        chooseOdiv.classList.remove("active-o");
         p1 = "1";
         p2 = "2";
         return p1, p2;
     } else {
         chooseXdiv.classList.remove("active-x");
-        chooseOdiv .classList.add("active-o");
+        chooseOdiv.classList.add("active-o");
     }   
 })
 
@@ -54,16 +54,23 @@ function setScoreMenuToMultiplayer() {
 }
 
 function setScoreMenuToCPU() {
-    document.getElementById("x-player-score-label").innerText = "X (You)";
-    document.getElementById("o-player-score-label").innerText = "O (CPU)";
+    if(document.querySelector(".start-game__choose-player--x").classList.contains("active-x")){
+        document.getElementById("x-player-score-label").innerText = "X (You)";
+        document.getElementById("o-player-score-label").innerText = "O (CPU)";
+    } else {
+        document.getElementById("x-player-score-label").innerText = "O (You)";
+        document.getElementById("o-player-score-label").innerText = "X (CPU)";
+    }
 }
 
 vsCpu.onclick = () => {
     startGameSection.style.zIndex = "0";
     setScoreMenuToCPU();
+    getCpuChoice()
 }
 
 vsPlayer.onclick = () => {
+    multiplayer = true;
     startGameSection.style.zIndex = "0";
     setScoreMenuToMultiplayer();
 }
@@ -120,8 +127,6 @@ gameBoardDiv.forEach(box => {
     }   
 })
 
-
-
 function checkWin() {
     for(let i = 0; i < 8; i++ ) {
         const winCondition = WINNING_COMBINATIONS[i];
@@ -175,13 +180,21 @@ let tieScore = 0;
 function winnerReveal(a) {
     if(a === "x") {
         document.querySelector(".won").style.zIndex = "100";
-        document.getElementById("winMessage").innerText = "PLAYER " + p1 + " IS WINNER!";
+
+        if(multiplayer == true) {
+            document.getElementById("winMessage").innerText = "PLAYER " + p1 + " IS WINNER!";
+        } else { document.getElementById("winMessage").innerText = "YOU WON!"; }
+
         xScore = countScore(xScore, "x-score");
         quit(1, ".won");
         nextRound(1, ".won"); 
     } else {
         document.querySelector(".lost").style.zIndex = "100";
-        document.getElementById("lostMessage").innerText = "PLAYER " + p2 + " IS WINNER!";
+
+        if(multiplayer == true) {
+            document.getElementById("lostMessage").innerText = "PLAYER " + p2 + " IS WINNER!";
+        } else { document.getElementById("lostMessage").innerText = "OH NO, YOU LOST…"; }
+
         oScore = countScore(oScore, "o-score");
         quit(0, ".lost");
         nextRound(0, ".lost"); 

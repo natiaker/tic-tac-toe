@@ -242,17 +242,19 @@ body {
   width: 4rem;
   height: 4rem;
 }
-.game__board--div.x-hover:hover {
-  background-image: url("../assets/icon-x-outline.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  cursor: pointer;
-}
-.game__board--div.o-hover:hover {
-  background-image: url("../assets/icon-o-outline.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  cursor: pointer;
+@media screen and (min-width: 1024px) {
+  .game__board--div.x-hover:hover {
+    background-image: url("../assets/icon-x-outline.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+  .game__board--div.o-hover:hover {
+    background-image: url("../assets/icon-o-outline.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
 }
 .game__score {
   display: flex;
