@@ -22,7 +22,7 @@ const WINNING_COMBINATIONS = [
 	[0, 4, 8],
 	[2, 4, 6]
 ]
-
+let arrayRand = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 let p1 = "2";
 let p2 = "1";
@@ -58,23 +58,96 @@ function setScoreMenuToCPU() {
         document.getElementById("x-player-score-label").innerText = "X (You)";
         document.getElementById("o-player-score-label").innerText = "O (CPU)";
     } else {
-        document.getElementById("x-player-score-label").innerText = "O (You)";
-        document.getElementById("o-player-score-label").innerText = "X (CPU)";
+        document.getElementById("x-player-score-label").innerText = "X (CPU)";
+        document.getElementById("o-player-score-label").innerText = "O(You)";
     }
 }
 
 vsCpu.onclick = () => {
     startGameSection.style.zIndex = "0";
     setScoreMenuToCPU();
-    getCpuChoice()
+    insertCpulement()
 }
 
 vsPlayer.onclick = () => {
     multiplayer = true;
     startGameSection.style.zIndex = "0";
     setScoreMenuToMultiplayer();
+    playGame();
 }
 
+//from
+function insertCpulement(event) {
+    if(document.querySelector(".start-game__choose-player--x").classList.contains("active-x")) {
+        gameBoardDiv.forEach(box => {
+            box.classList.add("x-hover");
+            box.onclick = (event) => {
+                if(!gameEnd) {
+                    const clickedCellIndex = parseInt(event.target.getAttribute('index'));
+                    arrayRand.splice(arrayRand.indexOf(clickedCellIndex), 1);
+
+                    if (gameState[clickedCellIndex] !== "") { return; }
+
+                    add_x_element(event);
+                    playerTurn.src = "./assets/silver-o.svg";
+                    gameState.splice(clickedCellIndex, 1, "x");
+                    
+                    console.log(clickedCellIndex + "clickedindex");
+                    if(isPlayer_O_Turn == true) {
+                        playCpu("o");
+                    } 
+                    isPlayer_O_Turn = true
+                } 
+                checkWin(); 
+            }   
+        })
+    }   
+    if(document.querySelector(".start-game__choose-player--o").classList.contains("active-o")) {
+        playCpu("x");
+        gameBoardDiv.forEach(box => {
+            box.classList.add("o-hover");
+            box.onclick = (event) => {
+                if(!gameEnd) {
+                    const clickedCellIndex = parseInt(event.target.getAttribute('index'));
+                    arrayRand.splice(arrayRand.indexOf(clickedCellIndex), 1);
+
+                    if (gameState[clickedCellIndex] !== "") { return; }
+
+                    add_o_element(event);
+                    playerTurn.src = "./assets/silver-x.svg";
+                    gameState.splice(clickedCellIndex, 1, "o");
+
+                    if(isPlayer_O_Turn == false) {
+                        playCpu("x");
+                    } 
+
+                    console.log(clickedCellIndex + "clickedindex");
+                    console.log(isPlayer_O_Turn);
+                    
+
+                    checkWin(); 
+                    isPlayer_O_Turn = false;
+                } 
+            }   
+        })
+    }
+}
+
+function playCpu(mark) {
+    let index = Math.floor(Math.random()*arrayRand.length);
+    let random = arrayRand[index];
+    let newElement = document.createElement('IMG');
+    newElement.src = "./assets/icon-" + mark + ".svg";
+    
+    if(gameState[random] == "") {
+        gameBoardDiv[random].appendChild(newElement);
+        gameState.splice(random, 1, mark);
+        arrayRand.splice(index, 1);
+        checkWin();
+    }
+}
+
+//to
 function add_x_element(event) {
     let newElement = document.createElement('IMG');
     event.target.appendChild(newElement);
@@ -116,16 +189,17 @@ function insertElement(event) {
     }
 }
 
-
-gameBoardDiv.forEach(box => {
-    box.classList.add("x-hover");
-    box.onclick = (event) => {
-        if(!gameEnd) {
-            insertElement(event);  
-            checkWin(); 
-        } 
-    }   
-})
+function playGame() {
+    gameBoardDiv.forEach(box => {
+        box.classList.add("x-hover");
+        box.onclick = (event) => {
+            if(!gameEnd) {
+                insertElement(event);  
+                checkWin(); 
+            } 
+        }   
+    })
+}
 
 function checkWin() {
     for(let i = 0; i < 8; i++ ) {
@@ -183,7 +257,8 @@ function winnerReveal(a) {
 
         if(multiplayer == true) {
             document.getElementById("winMessage").innerText = "PLAYER " + p1 + " IS WINNER!";
-        } else { document.getElementById("winMessage").innerText = "YOU WON!"; }
+        } else { 
+            document.getElementById("winMessage").innerText = "YOU WON!"; }
 
         xScore = countScore(xScore, "x-score");
         quit(1, ".won");
@@ -214,6 +289,7 @@ function nextRound(index, status) {
     document.getElementsByClassName("next-btn")[index].onclick = () => {
         document.querySelector(status).style.zIndex = "0";
         reset();
+        insertCpulement();
     }
 }
 
@@ -221,6 +297,7 @@ function reset() {
     isPlayer_O_Turn = false;
     gameEnd = false;
     gameState = ["", "", "", "", "", "", "", "", ""];
+    arrayRand = [1, 2, 3, 4, 5, 6, 7, 8];
     playerTurn.src = "./assets/silver-x.svg";
     gameBoardDiv.forEach(box => {
         box.innerHTML = "";
