@@ -76,7 +76,6 @@ vsPlayer.onclick = () => {
     playGame();
 }
 
-//from
 function insertCpulement(event) {
     if(document.querySelector(".start-game__choose-player--x").classList.contains("active-x")) {
         gameBoardDiv.forEach(box => {
@@ -159,7 +158,7 @@ function playCpu(mark) {
     newElement.src = "./assets/icon-" + mark + ".svg";
 
     if(!gameEnd) {
-        if(gameState[random] == "") {
+        if(gameState[random] === "") {
             gameBoardDiv[random].appendChild(newElement);
             gameState.splice(random, 1, mark);
             arrayRand.splice(index, 1);  
@@ -168,7 +167,6 @@ function playCpu(mark) {
     }
 }
 
-//to
 function add_x_element(event) {
     let newElement = document.createElement('IMG');
     event.target.appendChild(newElement);
@@ -223,23 +221,25 @@ function playGame() {
 }
 
 function checkWin() {
-    for(let i = 0; i < 8; i++ ) {
+    console.log("state ", gameState)
+    for(let i = 0; i < WINNING_COMBINATIONS.length; i++ ) {
         const winCondition = WINNING_COMBINATIONS[i];
         let a = gameState[winCondition[0]];
         let b = gameState[winCondition[1]];
         let c = gameState[winCondition[2]]; 
-        console.log(a, b,c);
+
         if (a === '' || b === '' || c === '') { continue; }
         if(a===b && b===c) {
             winnerReveal(a);
             styleWinnerCells(winCondition, a);
-            return gameEnd = true;
+            gameEnd = true;
+            return;
         }
+    }
         
-        if (!gameState.includes("")) {
-            gameTied();
-            return gameEnd = true;
-        }
+    if (!gameState.includes("")) {
+        gameTied();
+        gameEnd = true;
     }
 }
 
