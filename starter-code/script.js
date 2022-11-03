@@ -84,21 +84,22 @@ function insertCpulement(event) {
             box.onclick = (event) => {
                 if(!gameEnd) {
                     const clickedCellIndex = parseInt(event.target.getAttribute('index'));
-                    arrayRand.splice(arrayRand.indexOf(clickedCellIndex), 1);
 
                     if (gameState[clickedCellIndex] !== "") { return; }
+                    
+                    arrayRand.splice(arrayRand.indexOf(clickedCellIndex), 1);
 
                     add_x_element(event);
                     playerTurn.src = "./assets/silver-o.svg";
                     gameState.splice(clickedCellIndex, 1, "x");
-                    
-                    console.log(clickedCellIndex + "clickedindex");
+                    checkWin(); 
+                    isPlayer_O_Turn = true;
+
                     if(isPlayer_O_Turn == true) {
                         playCpu("o");
                     } 
-                    isPlayer_O_Turn = true
+
                 } 
-                checkWin(); 
             }   
         })
     }   
@@ -109,24 +110,24 @@ function insertCpulement(event) {
             box.onclick = (event) => {
                 if(!gameEnd) {
                     const clickedCellIndex = parseInt(event.target.getAttribute('index'));
-                    arrayRand.splice(arrayRand.indexOf(clickedCellIndex), 1);
 
                     if (gameState[clickedCellIndex] !== "") { return; }
+
+                    arrayRand.splice(arrayRand.indexOf(clickedCellIndex), 1);
+
 
                     add_o_element(event);
                     playerTurn.src = "./assets/silver-x.svg";
                     gameState.splice(clickedCellIndex, 1, "o");
+                    checkWin(); 
+                    isPlayer_O_Turn = false;
 
                     if(isPlayer_O_Turn == false) {
                         playCpu("x");
                     } 
 
-                    console.log(clickedCellIndex + "clickedindex");
-                    console.log(isPlayer_O_Turn);
-                    
-
-                    checkWin(); 
-                    isPlayer_O_Turn = false;
+                    console.log(gameState);
+                    console.log(arrayRand);  
                 } 
             }   
         })
@@ -138,12 +139,14 @@ function playCpu(mark) {
     let random = arrayRand[index];
     let newElement = document.createElement('IMG');
     newElement.src = "./assets/icon-" + mark + ".svg";
-    
-    if(gameState[random] == "") {
-        gameBoardDiv[random].appendChild(newElement);
-        gameState.splice(random, 1, mark);
-        arrayRand.splice(index, 1);
-        checkWin();
+
+    if(!gameEnd) {
+        if(gameState[random] == "") {
+            gameBoardDiv[random].appendChild(newElement);
+            gameState.splice(random, 1, mark);
+            arrayRand.splice(index, 1);      
+        } 
+        checkWin(); 
     }
 }
 
@@ -207,13 +210,14 @@ function checkWin() {
         let a = gameState[winCondition[0]];
         let b = gameState[winCondition[1]];
         let c = gameState[winCondition[2]]; 
-
+        console.log(a, b,c);
         if (a === '' || b === '' || c === '') { continue; }
         if(a===b && b===c) {
             winnerReveal(a);
             styleWinnerCells(winCondition, a);
             return gameEnd = true;
         }
+        
         if (!gameState.includes("")) {
             gameTied();
             return gameEnd = true;
@@ -258,7 +262,12 @@ function winnerReveal(a) {
         if(multiplayer == true) {
             document.getElementById("winMessage").innerText = "PLAYER " + p1 + " IS WINNER!";
         } else { 
-            document.getElementById("winMessage").innerText = "YOU WON!"; }
+            if(document.querySelector(".start-game__choose-player--o").classList.contains("active-o")) {
+                document.getElementById("winMessage").innerText = "OH NO, YOU LOST…";
+            } else {
+               document.getElementById("lostMessage").innerText = "YOU WON!"; 
+            }
+        }
 
         xScore = countScore(xScore, "x-score");
         quit(1, ".won");
@@ -268,7 +277,13 @@ function winnerReveal(a) {
 
         if(multiplayer == true) {
             document.getElementById("lostMessage").innerText = "PLAYER " + p2 + " IS WINNER!";
-        } else { document.getElementById("lostMessage").innerText = "OH NO, YOU LOST…"; }
+        } else { 
+            if(document.querySelector(".start-game__choose-player--o").classList.contains("active-o")) {
+                document.getElementById("lostMessage").innerText = "YOU WON!"; 
+            } else {
+                document.getElementById("winMessage").innerText = "OH NO, YOU LOST…"; 
+            }
+        }
 
         oScore = countScore(oScore, "o-score");
         quit(0, ".lost");
@@ -289,7 +304,7 @@ function nextRound(index, status) {
     document.getElementsByClassName("next-btn")[index].onclick = () => {
         document.querySelector(status).style.zIndex = "0";
         reset();
-        insertCpulement();
+        if(multiplayer == false) { insertCpulement(); }
     }
 }
 
@@ -297,7 +312,7 @@ function reset() {
     isPlayer_O_Turn = false;
     gameEnd = false;
     gameState = ["", "", "", "", "", "", "", "", ""];
-    arrayRand = [1, 2, 3, 4, 5, 6, 7, 8];
+    arrayRand = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     playerTurn.src = "./assets/silver-x.svg";
     gameBoardDiv.forEach(box => {
         box.innerHTML = "";
@@ -325,6 +340,7 @@ function restart() {
         document.querySelector(".yes").onclick = () => {
             document.querySelector(".restart").style.zIndex = "0";
             reset();
+            if(multiplayer == false) { insertCpulement(); }
         }
     }
 }
