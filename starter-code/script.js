@@ -87,7 +87,6 @@ function insertCpulement(event) {
                     if (gameState[clickedCellIndex] !== "") { return; }
                     
                     arrayRand.splice(arrayRand.indexOf(clickedCellIndex), 1);
-
                     add_x_element(event);
                     playerTurn.src = "./assets/silver-o.svg";
                     gameState.splice(clickedCellIndex, 1, "x");
@@ -96,8 +95,10 @@ function insertCpulement(event) {
 
                     if(isPlayer_O_Turn == true) {
                         playCpu("o");
+                        playerTurn.src = "./assets/silver-x.svg";
                     } 
                     gameBoardDiv.forEach(box => {
+                        box.classList.remove("o-hover");
                         box.classList.remove("x-hover");
                         if(box.hasChildNodes() == false){
                             box.classList.add("x-hover");
@@ -105,6 +106,7 @@ function insertCpulement(event) {
                     })
                 } 
             }   
+            box.classList.remove("x-hover");
             if(box.hasChildNodes() == false){
                 box.classList.add("x-hover");
             } 
@@ -128,18 +130,21 @@ function insertCpulement(event) {
  
                     if(isPlayer_O_Turn == false) {
                         playCpu("x");
+                        playerTurn.src = "./assets/silver-o.svg";
                     } 
 
                     console.log(gameState);
                     console.log(arrayRand);  
                 } 
                 gameBoardDiv.forEach(box => {
+                    box.classList.remove("x-hover");
                     box.classList.remove("o-hover");
                     if(box.hasChildNodes() == false){
                         box.classList.add("o-hover");
                     } 
                 })
             }  
+            box.classList.remove("o-hover");
             if(box.hasChildNodes() == false){
                 box.classList.add("o-hover");
             } 
@@ -278,7 +283,7 @@ function winnerReveal(a) {
             if(document.querySelector(".start-game__choose-player--o").classList.contains("active-o")) {
                 document.getElementById("winMessage").innerText = "OH NO, YOU LOST…";
             } else {
-               document.getElementById("lostMessage").innerText = "YOU WON!"; 
+               document.getElementById("winMessage").innerText = "YOU WON!"; 
             }
         }
 
@@ -294,7 +299,7 @@ function winnerReveal(a) {
             if(document.querySelector(".start-game__choose-player--o").classList.contains("active-o")) {
                 document.getElementById("lostMessage").innerText = "YOU WON!"; 
             } else {
-                document.getElementById("winMessage").innerText = "OH NO, YOU LOST…"; 
+                document.getElementById("lostMessage").innerText = "OH NO, YOU LOST…"; 
             }
         }
 
