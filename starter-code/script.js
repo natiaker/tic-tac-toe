@@ -80,7 +80,6 @@ vsPlayer.onclick = () => {
 function insertCpulement(event) {
     if(document.querySelector(".start-game__choose-player--x").classList.contains("active-x")) {
         gameBoardDiv.forEach(box => {
-            box.classList.add("x-hover");
             box.onclick = (event) => {
                 if(!gameEnd) {
                     const clickedCellIndex = parseInt(event.target.getAttribute('index'));
@@ -98,15 +97,22 @@ function insertCpulement(event) {
                     if(isPlayer_O_Turn == true) {
                         playCpu("o");
                     } 
-
+                    gameBoardDiv.forEach(box => {
+                        box.classList.remove("x-hover");
+                        if(box.hasChildNodes() == false){
+                            box.classList.add("x-hover");
+                        } 
+                    })
                 } 
             }   
+            if(box.hasChildNodes() == false){
+                box.classList.add("x-hover");
+            } 
         })
     }   
     if(document.querySelector(".start-game__choose-player--o").classList.contains("active-o")) {
         playCpu("x");
         gameBoardDiv.forEach(box => {
-            box.classList.add("o-hover");
             box.onclick = (event) => {
                 if(!gameEnd) {
                     const clickedCellIndex = parseInt(event.target.getAttribute('index'));
@@ -114,14 +120,12 @@ function insertCpulement(event) {
                     if (gameState[clickedCellIndex] !== "") { return; }
 
                     arrayRand.splice(arrayRand.indexOf(clickedCellIndex), 1);
-
-
                     add_o_element(event);
                     playerTurn.src = "./assets/silver-x.svg";
                     gameState.splice(clickedCellIndex, 1, "o");
                     checkWin(); 
                     isPlayer_O_Turn = false;
-
+ 
                     if(isPlayer_O_Turn == false) {
                         playCpu("x");
                     } 
@@ -129,7 +133,16 @@ function insertCpulement(event) {
                     console.log(gameState);
                     console.log(arrayRand);  
                 } 
-            }   
+                gameBoardDiv.forEach(box => {
+                    box.classList.remove("o-hover");
+                    if(box.hasChildNodes() == false){
+                        box.classList.add("o-hover");
+                    } 
+                })
+            }  
+            if(box.hasChildNodes() == false){
+                box.classList.add("o-hover");
+            } 
         })
     }
 }
@@ -144,8 +157,8 @@ function playCpu(mark) {
         if(gameState[random] == "") {
             gameBoardDiv[random].appendChild(newElement);
             gameState.splice(random, 1, mark);
-            arrayRand.splice(index, 1);      
-        } 
+            arrayRand.splice(index, 1);  
+        }
         checkWin(); 
     }
 }
@@ -317,8 +330,11 @@ function reset() {
     gameBoardDiv.forEach(box => {
         box.innerHTML = "";
         box.style.backgroundColor = "#1F3641";
-        box.classList.remove("o-hover");
-        box.classList.add("x-hover");
+        if(multiplayer == true) {
+            box.classList.remove("o-hover");
+            box.classList.add("x-hover");
+         }
+
     })
 }
 
